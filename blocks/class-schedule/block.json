@@ -1,0 +1,38 @@
+{
+  "apiVersion": 3,
+  "name": "bailaya/class-schedule",
+  "title": "BailaYa: Class Schedule",
+  "category": "widgets",
+  "icon": "schedule",
+  "description": "Embed an upcoming class schedule from BailaYa.",
+  "textdomain": "bailaya",
+  "attributes": {
+    "from": {
+      "type": "string",
+      "default": ""
+    },
+    "override_id": {
+      "type": "string",
+      "default": ""
+    },
+    "locale": {
+      "type": "string",
+      "default": ""
+    },
+    "cache_ttl": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "editorScript": "file:./build/index.js",
+  "style": "bailaya-frontend-styles",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}

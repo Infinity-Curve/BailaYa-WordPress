@@ -1,0 +1,19 @@
+{
+  "name": "bailaya-wp",
+  "private": true,
+  "devDependencies": {
+    "@wordpress/scripts": "^27.3.0"
+  },
+  "scripts": {
+    "start": "wp-scripts start blocks/class-schedule/src/index.js blocks/class-schedule-by-type/src/index.js blocks/instructor-list/src/index.js blocks/studio-profile-card/src/index.js blocks/user-profile-card/src/index.js",
+    "build": "wp-scripts build blocks/class-schedule/src/index.js blocks/class-schedule-by-type/src/index.js blocks/instructor-list/src/index.js blocks/studio-profile-card/src/index.js blocks/user-profile-card/src/index.js",
+    "lint": "wp-scripts lint-js",
+    "format": "wp-scripts format"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@wordpress/components": "^30.4.0"
+  }
+}

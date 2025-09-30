@@ -1,0 +1,17 @@
+{
+  "apiVersion": 3,
+  "name": "bailaya/instructor-list",
+  "title": "BailaYa: Instructors",
+  "category": "widgets",
+  "icon": "groups",
+  "description": "Embed a list of instructors from BailaYa.",
+  "textdomain": "bailaya",
+  "attributes": {
+    "override_id": { "type": "string", "default": "" },
+    "cache_ttl":   { "type": "number", "default": 0 }
+  },
+  "style": "bailaya-frontend-styles",
+  "editorScript": "file:./build/index.js",
+  "render": "file:./render.php",
+  "supports": { "html": false, "align": ["wide","full"] }
+}

@@ -1,0 +1,20 @@
+{
+  "apiVersion": 3,
+  "name": "bailaya/class-schedule-by-type",
+  "title": "BailaYa: Class Schedule by Type",
+  "category": "widgets",
+  "icon": "filter",
+  "description": "Embed an upcoming class schedule filtered by dance type (e.g., salsa).",
+  "textdomain": "bailaya",
+  "attributes": {
+    "type_name": { "type": "string", "default": "" },
+    "from":      { "type": "string", "default": "" },
+    "override_id": { "type": "string", "default": "" },
+    "locale":    { "type": "string", "default": "" },
+    "cache_ttl": { "type": "number", "default": 0 }
+  },
+  "editorScript": "file:./build/index.js",
+  "style": "bailaya-frontend-styles",
+  "render": "file:./render.php",
+  "supports": { "html": false, "align": ["wide","full"] }
+}

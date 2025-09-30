@@ -1,0 +1,15 @@
+.bailaya-list { margin-top: 1.5rem; display: grid; gap: 1rem; }
+@media (min-width: 768px) { .bailaya-list { margin-top: 3rem; } }
+.bailaya-card { padding: 1rem; background: #fff; border-radius: .75rem; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+.bailaya-name { font-weight: 600; font-size: 1.125rem; }
+.bailaya-details { font-size: .875rem; color: #4b5563; }
+.bailaya-instructor { font-size: .875rem; color: #1f2937; margin-top: .25rem; }
+.bailaya-level { color: #6b7280; font-size: .875rem; margin-left: .25rem; }
+.bailaya-error { padding: .75rem 1rem; background: #fee2e2; color: #991b1b; border-radius: .5rem; }
+.bailaya-studio-card { background: #fff; }
+.bailaya-studio-name { color: #2A2343; }
+.bailaya-studio-desc { color: #464646; }
+.bailaya-user-card { background: #fff; }
+.bailaya-user-name { color: #2A2343; }
+.bailaya-user-bio { color: #464646; }
+

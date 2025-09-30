@@ -1,0 +1,20 @@
+{
+  "apiVersion": 3,
+  "name": "bailaya/user-profile-card",
+  "title": "BailaYa: User Profile Card",
+  "category": "widgets",
+  "icon": "id",
+  "description": "Display a single user profile (photo, name, localized bio, occupation, experience).",
+  "textdomain": "bailaya",
+  "attributes": {
+    "user_id": { "type": "string", "default": "" },
+    "locale": { "type": "string", "default": "" },
+    "cache_ttl": { "type": "number", "default": 0 },
+    "occupation_label": { "type": "string", "default": "" },
+    "experience_label": { "type": "string", "default": "" }
+  },
+  "style": "bailaya-frontend-styles",
+  "editorScript": "file:./build/index.js",
+  "render": "file:./render.php",
+  "supports": { "html": false, "align": ["wide","full"] }
+}

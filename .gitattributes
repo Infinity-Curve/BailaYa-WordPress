@@ -1,0 +1,31 @@
+# Exclude development files from export
+/.gitignore export-ignore
+/.gitattributes export-ignore
+/.editorconfig export-ignore
+/.eslint* export-ignore
+/.stylelint* export-ignore
+/.prettier* export-ignore
+/.babelrc export-ignore
+/phpcs.xml* export-ignore
+/phpunit.xml* export-ignore
+/.wp-env.json export-ignore
+
+# Exclude Node / Composer stuff
+/node_modules export-ignore
+/vendor export-ignore
+/package.json export-ignore
+/package-lock.json export-ignore
+/yarn.lock export-ignore
+/pnpm-lock.yaml export-ignore
+
+# Exclude source (we only ship compiled blocks)
+blocks/**/src export-ignore
+blocks/**/tsconfig.json export-ignore
+
+# Exclude build configs
+/webpack.config.js export-ignore
+/tsconfig.json export-ignore
+
+# Exclude test and coverage
+/tests export-ignore
+/coverage export-ignore

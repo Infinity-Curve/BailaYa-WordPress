@@ -1,0 +1,20 @@
+{
+  "apiVersion": 3,
+  "name": "bailaya/studio-profile-card",
+  "title": "BailaYa: Studio Profile Card",
+  "category": "widgets",
+  "icon": "store",
+  "description": "Display a studio profile (logo, description, address, business hours).",
+  "textdomain": "bailaya",
+  "attributes": {
+    "override_id": { "type": "string", "default": "" },
+    "locale": { "type": "string", "default": "" },
+    "cache_ttl": { "type": "number", "default": 0 },
+    "address_label": { "type": "string", "default": "" },
+    "business_hours_label": { "type": "string", "default": "" }
+  },
+  "style": "bailaya-frontend-styles",
+  "editorScript": "file:./build/index.js",
+  "render": "file:./render.php",
+  "supports": { "html": false, "align": ["wide", "full"] }
+}

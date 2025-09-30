@@ -1,0 +1,55 @@
+# Ignore packaged zips
+*.zip
+
+# ----------------------------------------
+# PHP / Composer
+# ----------------------------------------
+vendor/
+composer.lock
+
+# ----------------------------------------
+# Node / JS Build
+# ----------------------------------------
+node_modules/
+build/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# WordPress Scripts / Block build outputs
+blocks/**/build/
+blocks/**/dist/
+
+# Cache
+.jest/
+coverage/
+*.tsbuildinfo
+
+# ----------------------------------------
+# Environment Files
+# ----------------------------------------
+.env
+.env.*.local
+
+# ----------------------------------------
+# IDE / Editor
+# ----------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ----------------------------------------
+# OS Files
+# ----------------------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------------------
+# Misc
+# ----------------------------------------
+*.tgz
+package-lock.json
+.pnpm-debug.log
