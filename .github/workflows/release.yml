@@ -1,0 +1,98 @@
+name: Build & Release Plugin
+
+on:
+  push:
+    tags:
+      - 'v*'          # e.g. v0.1.0, v1.2.3
+  workflow_dispatch:   # allow manual runs too
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_VERSION: '20'     # @wordpress/scripts supports Node 18/20
+      PHP_VERSION: '8.2'
+      PLUGIN_SLUG: 'bailaya' # used for zip name
+      ZIP_NAME: bailaya-wp-${{ github.ref_name }}.zip
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # needed for `git archive` to include history metadata
+
+      # Cache Node + Composer for faster builds
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          tools: composer:v2
+          coverage: none
+
+      - name: Cache Composer
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.composer/cache
+            vendor
+          key: composer-${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            composer-${{ runner.os }}-
+
+      # --- Build steps ---
+      - name: Install Node deps
+        run: npm ci
+
+      - name: Build blocks (all)
+        run: npm run build
+
+      - name: Install PHP deps (prod only)
+        run: composer install --no-dev --prefer-dist --optimize-autoloader
+
+      # --- Sanity checks to catch missing assets early ---
+      - name: Verify build assets exist
+        run: |
+          test -f blocks/class-schedule/build/index.js
+          test -f blocks/class-schedule-by-type/build/index.js
+          test -f blocks/instructor-list/build/index.js
+          test -f blocks/studio-profile-card/build/index.js
+          test -f blocks/user-profile-card/build/index.js
+
+      # --- Package the plugin using .gitattributes export-ignore ---
+      # This creates a clean ZIP without dev files, src/, node_modules/, etc.
+      - name: Create ZIP via git archive
+        run: |
+          git archive --format=zip -o "${{ env.ZIP_NAME }}" HEAD
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ZIP_NAME }}
+          path: ${{ env.ZIP_NAME }}
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Generate checksums
+        run: |
+          sha256sum "${{ env.ZIP_NAME }}" > "${{ env.ZIP_NAME }}.sha256"
+
+      # --- Publish GitHub Release with the ZIP attached ---
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: "BailaYa WP ${{ github.ref_name }}"
+          draft: false
+          prerelease: false
+          files: |
+            ${{ env.ZIP_NAME }}
+            ${{ env.ZIP_NAME }}.sha256
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
