@@ -2,7 +2,7 @@
 /**
  * Plugin Name: BailaYa
  * Description: Embed BailaYa schedules, instructors and profiles in WordPress via shortcodes and widgets.
- * Version: 0.1.0
+ * Version: 1.0.0
  * Author: BailaYa
  * Requires PHP: 8.1
  * License: ISC
