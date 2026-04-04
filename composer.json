@@ -1,6 +1,6 @@
 {
   "name": "bailaya/wordpress",
-  "version": "1.2.0",
+  "version": "1.2.5",
   "description": "BailaYa WordPress plugin: widgets and shortcodes powered by the BailaYa API.",
   "type": "wordpress-plugin",
   "require": {
