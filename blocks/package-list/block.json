@@ -1,0 +1,20 @@
+{
+  "apiVersion": 3,
+  "name": "bailaya/package-list",
+  "title": "BailaYa: Class Packages",
+  "category": "widgets",
+  "icon": "tag",
+  "description": "Embed purchasable group-class packages from BailaYa.",
+  "textdomain": "bailaya",
+  "attributes": {
+    "override_id":    { "type": "string",  "default": "" },
+    "locale":         { "type": "string",  "default": "" },
+    "hide_validity":  { "type": "boolean", "default": false },
+    "cache_ttl":      { "type": "number",  "default": 0 },
+    "buy_base_url":   { "type": "string",  "default": "" }
+  },
+  "style": "bailaya-frontend-styles",
+  "editorScript": "file:./build/index.js",
+  "render": "file:./render.php",
+  "supports": { "html": false, "align": ["wide", "full"] }
+}

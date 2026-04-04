@@ -13,3 +13,35 @@
 .bailaya-user-name { color: #2A2343; }
 .bailaya-user-bio { color: #464646; }
 
+/* Package list */
+.bailaya-pkg-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+@media (min-width: 640px) { .bailaya-pkg-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .bailaya-pkg-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 3rem; } }
+.bailaya-pkg-card { display: flex; flex-direction: column; justify-content: space-between; background: #fff; border: 1px solid #DCDCDC; border-radius: .75rem; box-shadow: 0 2px 12px rgba(0,0,0,.06); overflow: hidden; }
+.bailaya-pkg-body { padding: 1.25rem 1.25rem .75rem; flex: 1 1 auto; }
+.bailaya-pkg-name { font-weight: 600; font-size: 1.125rem; color: #2A2343; line-height: 1.2; padding-bottom: .75rem; }
+.bailaya-pkg-desc { font-size: .875rem; color: #464646; padding-bottom: .5rem; }
+.bailaya-pkg-meta { font-size: .875rem; font-weight: 600; color: #2A2343; }
+.bailaya-pkg-types { margin-top: .25rem; font-size: .75rem; color: #464646; opacity: .8; }
+.bailaya-pkg-footer { padding: .75rem 1.25rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: .75rem; border-top: 1px solid #DCDCDC; }
+.bailaya-pkg-price { font-weight: 700; font-size: 1.25rem; color: #2A2343; }
+
+/* Private lesson instructors */
+.bailaya-pl-list { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 2rem; }
+@media (min-width: 768px) { .bailaya-pl-list { margin-top: 3rem; } }
+.bailaya-pl-card { display: flex; flex-direction: column; background: #fff; border: 1px solid #DCDCDC; border-radius: .75rem; box-shadow: 0 2px 12px rgba(0,0,0,.06); overflow: hidden; }
+@media (min-width: 768px) { .bailaya-pl-card { flex-direction: row; align-items: flex-start; } }
+.bailaya-pl-imgwrap { width: 100%; padding: 1rem 1rem 0; aspect-ratio: 1/1; }
+@media (min-width: 768px) { .bailaya-pl-imgwrap { width: 30%; padding: 1rem; } }
+.bailaya-pl-img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: .75rem; }
+.bailaya-pl-body { padding: 1.5rem; flex: 1 1 auto; text-align: left; }
+.bailaya-pl-name { font-weight: 600; font-size: 1.5rem; color: #2A2343; line-height: 1.2; }
+@media (min-width: 768px) { .bailaya-pl-name { font-size: 2rem; } }
+.bailaya-pl-bio { margin-top: .5rem; font-size: .875rem; color: #464646; }
+@media (min-width: 768px) { .bailaya-pl-bio { font-size: 1rem; } }
+.bailaya-pl-section { margin-top: 1rem; }
+.bailaya-pl-section-heading { font-weight: 600; font-size: .8125rem; text-transform: uppercase; letter-spacing: .05em; color: #2A2343; margin-bottom: .35rem; }
+.bailaya-pl-slot { font-size: .875rem; color: #464646; line-height: 1.6; }
+.bailaya-pl-pricing-entry { font-size: .875rem; color: #464646; line-height: 1.6; }
+.bailaya-pl-btn { display: inline-block; margin-top: 1.25rem; padding: .625rem 1.5rem; background: #EC094D; color: #fff; border-radius: 100rem; font-weight: 700; font-size: .875rem; text-transform: uppercase; text-decoration: none; }
+

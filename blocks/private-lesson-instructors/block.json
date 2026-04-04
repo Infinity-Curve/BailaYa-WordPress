@@ -1,0 +1,19 @@
+{
+  "apiVersion": 3,
+  "name": "bailaya/private-lesson-instructors",
+  "title": "BailaYa: Private Lesson Instructors",
+  "category": "widgets",
+  "icon": "calendar-alt",
+  "description": "Embed private lesson instructors with their availability and pricing from BailaYa.",
+  "textdomain": "bailaya",
+  "attributes": {
+    "override_id":    { "type": "string", "default": "" },
+    "locale":         { "type": "string", "default": "" },
+    "cache_ttl":      { "type": "number", "default": 0 },
+    "book_base_url":  { "type": "string", "default": "" }
+  },
+  "style": "bailaya-frontend-styles",
+  "editorScript": "file:./build/index.js",
+  "render": "file:./render.php",
+  "supports": { "html": false, "align": ["wide", "full"] }
+}

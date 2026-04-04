@@ -30,6 +30,8 @@ use BailaYaWP\Admin\SettingsPage;
 use BailaYaWP\Shortcodes\ClassSchedule;
 use BailaYaWP\Shortcodes\ClassScheduleByType;
 use BailaYaWP\Shortcodes\InstructorList;
+use BailaYaWP\Shortcodes\PackageList;
+use BailaYaWP\Shortcodes\PrivateLessonInstructors;
 use BailaYaWP\Shortcodes\StudioProfileCard;
 
 /** Activation/Deactivation (reserved for future migrations) */
@@ -68,6 +70,8 @@ add_action('init', function () {
     register_block_type(__DIR__ . '/blocks/instructor-list');
     register_block_type(__DIR__ . '/blocks/studio-profile-card');
     register_block_type(__DIR__ . '/blocks/user-profile-card');
+    register_block_type(__DIR__ . '/blocks/private-lesson-instructors');
+    register_block_type(__DIR__ . '/blocks/package-list');
 });
 
 /** Admin + shortcodes */
@@ -81,4 +85,6 @@ add_action('plugins_loaded', function () {
     (new InstructorList())->register();
     (new StudioProfileCard())->register();
     (new UserProfileCard())->register();
+    (new PrivateLessonInstructors())->register();
+    (new PackageList())->register();
 });

@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace BailaYaWP;
 
+use BailaYa\Dto\PrivateLessonInstructor;
 use BailaYa\Dto\StudioClass;
+use BailaYa\Dto\StudioPackage;
 
 if (!defined('ABSPATH')) exit;
 
@@ -77,6 +79,126 @@ final class Renderer
         ob_start();
         $template = BAILAYA_WP_PATH . 'templates/instructor-list.php';
         /** @var list<Instructor> $instructors */
+        include $template;
+        return (string) ob_get_clean();
+    }
+
+    /**
+     * Render a grid of purchasable group-class packages.
+     *
+     * @param list<StudioPackage> $packages
+     * @param array{
+     *   locale?: string,
+     *   hideValidity?: bool,
+     *   buyBaseUrl?: string,
+     *   className?: string,
+     *   itemClassName?: string,
+     *   nameClassName?: string,
+     *   descriptionClassName?: string,
+     *   metaClassName?: string,
+     *   typesClassName?: string,
+     *   priceClassName?: string,
+     *   btnClassName?: string,
+     *   labels?: array{
+     *     buy?: string,
+     *     classes?: string,
+     *     validFor?: string,
+     *     month?: string,
+     *     months?: string
+     *   }
+     * } $opts
+     */
+    public static function packageList(array $packages, array $opts = []): string
+    {
+        wp_enqueue_style('bailaya');
+
+        $defaults = [
+            'locale'             => get_locale() ?: 'en',
+            'hideValidity'       => false,
+            'buyBaseUrl'         => 'https://www.bailaya.com/packages/',
+            'className'          => 'bailaya-pkg-grid',
+            'itemClassName'      => 'bailaya-pkg-card',
+            'nameClassName'      => 'bailaya-pkg-name',
+            'descriptionClassName' => 'bailaya-pkg-desc',
+            'metaClassName'      => 'bailaya-pkg-meta',
+            'typesClassName'     => 'bailaya-pkg-types',
+            'priceClassName'     => 'bailaya-pkg-price',
+            'btnClassName'       => 'bailaya-pl-btn',
+            'labels'             => [
+                'buy'     => __('Buy Now', 'bailaya'),
+                'classes' => __('classes', 'bailaya'),
+                'validFor'=> __('Valid for', 'bailaya'),
+                'month'   => __('month', 'bailaya'),
+                'months'  => __('months', 'bailaya'),
+            ],
+        ];
+        $data = array_replace_recursive($defaults, $opts);
+
+        ob_start();
+        $template = BAILAYA_WP_PATH . 'templates/package-list.php';
+        /** @var list<StudioPackage> $packages */
+        include $template;
+        return (string) ob_get_clean();
+    }
+
+    /**
+     * Render a list of private lesson instructors with availability and pricing.
+     *
+     * @param list<PrivateLessonInstructor> $instructors
+     * @param array{
+     *   locale?: string,
+     *   bookBaseUrl?: string,
+     *   className?: string,
+     *   itemClassName?: string,
+     *   imageWrapperClassName?: string,
+     *   imageClassName?: string,
+     *   bodyClassName?: string,
+     *   nameClassName?: string,
+     *   bioClassName?: string,
+     *   sectionClassName?: string,
+     *   sectionHeadingClassName?: string,
+     *   slotClassName?: string,
+     *   pricingEntryClassName?: string,
+     *   btnClassName?: string,
+     *   labels?: array{
+     *     availability?: string,
+     *     pricing?: string,
+     *     book?: string,
+     *     minutes?: string
+     *   }
+     * } $opts
+     */
+    public static function privateLessonInstructors(array $instructors, array $opts = []): string
+    {
+        wp_enqueue_style('bailaya');
+
+        $defaults = [
+            'locale'                 => get_locale() ?: 'en',
+            'bookBaseUrl'            => 'https://www.bailaya.com/en/book/private-lesson/',
+            'className'              => 'bailaya-pl-list',
+            'itemClassName'          => 'bailaya-pl-card',
+            'imageWrapperClassName'  => 'bailaya-pl-imgwrap',
+            'imageClassName'         => 'bailaya-pl-img',
+            'bodyClassName'          => 'bailaya-pl-body',
+            'nameClassName'          => 'bailaya-pl-name',
+            'bioClassName'           => 'bailaya-pl-bio',
+            'sectionClassName'       => 'bailaya-pl-section',
+            'sectionHeadingClassName'=> 'bailaya-pl-section-heading',
+            'slotClassName'          => 'bailaya-pl-slot',
+            'pricingEntryClassName'  => 'bailaya-pl-pricing-entry',
+            'btnClassName'           => 'bailaya-pl-btn',
+            'labels'                 => [
+                'availability' => __('Availability', 'bailaya'),
+                'pricing'      => __('Pricing', 'bailaya'),
+                'book'         => __('Book Now', 'bailaya'),
+                'minutes'      => __('min', 'bailaya'),
+            ],
+        ];
+        $data = array_replace_recursive($defaults, $opts);
+
+        ob_start();
+        $template = BAILAYA_WP_PATH . 'templates/private-lesson-instructors.php';
+        /** @var list<PrivateLessonInstructor> $instructors */
         include $template;
         return (string) ob_get_clean();
     }
