@@ -29,12 +29,20 @@
 /* Private lesson instructors */
 .bailaya-pl-list { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 2rem; }
 @media (min-width: 768px) { .bailaya-pl-list { margin-top: 3rem; } }
-.bailaya-pl-card { display: flex; flex-direction: column; background: #fff; border: 1px solid #DCDCDC; border-radius: .75rem; box-shadow: 0 2px 12px rgba(0,0,0,.06); overflow: hidden; }
-@media (min-width: 768px) { .bailaya-pl-card { flex-direction: row; align-items: flex-start; } }
-.bailaya-pl-imgwrap { width: 100%; padding: 1rem 1rem 0; aspect-ratio: 1/1; }
-@media (min-width: 768px) { .bailaya-pl-imgwrap { width: 30%; padding: 1rem; } }
-.bailaya-pl-img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: .75rem; }
-.bailaya-pl-body { padding: 1.5rem; flex: 1 1 auto; text-align: left; }
+.bailaya-pl-card { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; padding: 1.25rem; background: #fff; border: 1px solid #DCDCDC; border-radius: .75rem; box-shadow: 0 2px 12px rgba(0,0,0,.06); overflow: hidden; }
+@media (min-width: 768px) { .bailaya-pl-card { flex-direction: row; align-items: flex-start; gap: 2rem; padding: 1.5rem; } }
+.bailaya-pl-imgwrap { flex: 0 0 auto; width: 96px; height: 96px; }
+@media (min-width: 768px) { .bailaya-pl-imgwrap { width: 160px; height: 160px; } }
+.bailaya-pl-img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 9999px; }
+.bailaya-pl-body { flex: 1 1 auto; min-width: 0; text-align: left; }
+@media (min-width: 768px) {
+    .bailaya-pl-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 220px); column-gap: 2.5rem; align-items: start; }
+    .bailaya-pl-body > .bailaya-pl-name,
+    .bailaya-pl-body > .bailaya-pl-bio { grid-column: 1 / -1; }
+    .bailaya-pl-body > .bailaya-pl-section { grid-column: 1; }
+    .bailaya-pl-body > .bailaya-pl-section:has(.bailaya-pl-pricing-entry) { grid-column: 2; grid-row: 3; margin-top: 0; }
+    .bailaya-pl-body > .bailaya-pl-btn { grid-column: 2; justify-self: start; align-self: start; margin-top: 0; }
+}
 .bailaya-pl-name { font-weight: 600; font-size: 1.5rem; color: #2A2343; line-height: 1.2; }
 @media (min-width: 768px) { .bailaya-pl-name { font-size: 2rem; } }
 .bailaya-pl-bio { margin-top: .5rem; font-size: .875rem; color: #464646; }
