@@ -17,12 +17,15 @@ final class Renderer
      * @param list<StudioClass> $classes
      * @param array{
      *   locale?: string,
-     *   labels?: array{ instructor?: string },
+     *   labels?: array{ instructor?: string, viewOnMap?: string, online?: string },
      *   className?: string,
      *   itemClassName?: string,
      *   nameClassName?: string,
      *   detailsClassName?: string,
-     *   instructorClassName?: string
+     *   locationClassName?: string,
+     *   mapLinkClassName?: string,
+     *   instructorClassName?: string,
+     *   hideLocation?: bool
      * } $opts
      */
     public static function classSchedule(array $classes, array $opts = []): string
@@ -31,12 +34,19 @@ final class Renderer
 
         $defaults = [
             'locale' => get_locale() ?: 'en',
-            'labels' => ['instructor' => __('Instructor:', 'bailaya')],
+            'labels' => [
+                'instructor' => __('Instructor:', 'bailaya'),
+                'viewOnMap' => __('View on map', 'bailaya'),
+                'online' => __('Online', 'bailaya'),
+            ],
             'className' => 'bailaya-list',
             'itemClassName' => 'bailaya-card',
             'nameClassName' => 'bailaya-name',
             'detailsClassName' => 'bailaya-details',
+            'locationClassName' => 'bailaya-location',
+            'mapLinkClassName' => 'bailaya-map-link',
             'instructorClassName' => 'bailaya-instructor',
+            'hideLocation' => false,
         ];
         $data = array_replace_recursive($defaults, $opts);
 

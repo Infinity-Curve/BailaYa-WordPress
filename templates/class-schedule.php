@@ -20,6 +20,29 @@ $fmtDate = new IntlDateFormatter($locale, IntlDateFormatter::MEDIUM, IntlDateFor
       <div class="<?php echo esc_attr($data['detailsClassName']); ?>">
         <?php echo esc_html(sprintf('%s, %s — %s–%s', $dayName, $shortDate, $cls->startTime, $cls->endTime)); ?>
       </div>
+      <?php
+        $loc = $cls->location ?? null;
+        $locationText = '';
+        if (!($data['hideLocation'] ?? false) && $loc) {
+          if ($loc->isVirtual) {
+            $locationText = $loc->virtualPlatform
+              ? sprintf('%s · %s', $data['labels']['online'] ?? 'Online', $loc->virtualPlatform)
+              : ($data['labels']['online'] ?? 'Online');
+          } else {
+            $locationText = implode(' · ', array_filter([$loc->roomName, $loc->address]));
+          }
+        }
+      ?>
+      <?php if ($locationText !== ''): ?>
+        <div class="<?php echo esc_attr($data['locationClassName']); ?>">
+          <?php echo esc_html($locationText); ?>
+          <?php if ($loc && $loc->mapsUrl): ?>
+            <a href="<?php echo esc_url($loc->mapsUrl); ?>" target="_blank" rel="noopener noreferrer" class="<?php echo esc_attr($data['mapLinkClassName']); ?>">
+              <?php echo esc_html($data['labels']['viewOnMap'] ?? 'View on map'); ?>
+            </a>
+          <?php endif; ?>
+        </div>
+      <?php endif; ?>
       <?php if ($cls->instructor): ?>
         <div class="<?php echo esc_attr($data['instructorClassName']); ?>">
           <?php echo esc_html($data['labels']['instructor'] ?? 'Instructor:'); ?>

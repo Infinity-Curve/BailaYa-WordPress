@@ -4,7 +4,7 @@ Tags: dance, studio, schedule, classes, instructors, profiles
 Requires at least: 6.0
 Tested up to: 6.6
 Requires PHP: 8.1
-Stable tag: 0.1.0
+Stable tag: 1.4.0
 License: ISC
 License URI: https://opensource.org/licenses/ISC
 

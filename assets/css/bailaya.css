@@ -4,6 +4,9 @@
 .bailaya-name { font-weight: 600; font-size: 1.125rem; }
 .bailaya-details { font-size: .875rem; color: #4b5563; }
 .bailaya-instructor { font-size: .875rem; color: #1f2937; margin-top: .25rem; }
+.bailaya-location { font-size: .875rem; color: #4b5563; margin-top: .25rem; }
+.bailaya-map-link { color: #EC094D; text-decoration: none; }
+.bailaya-map-link:hover { text-decoration: underline; }
 .bailaya-level { color: #6b7280; font-size: .875rem; margin-left: .25rem; }
 .bailaya-error { padding: .75rem 1rem; background: #fee2e2; color: #991b1b; border-radius: .5rem; }
 .bailaya-studio-card { background: #fff; }
