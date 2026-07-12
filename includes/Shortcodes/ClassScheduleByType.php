@@ -34,7 +34,7 @@ final class ClassScheduleByType
 
         $typeName   = is_string($atts['type']) ? trim($atts['type']) : '';
         if ($typeName === '') {
-            return '<div class="bailaya-error">Missing required attribute: type</div>';
+            return '<div class="bailaya-error">' . esc_html__('Missing required attribute: type', 'bailaya') . '</div>';
         }
 
         $fromStr    = Helpers::sanitize_date_yyyy_mm_dd($atts['from'] ?? null);
@@ -71,9 +71,15 @@ final class ClassScheduleByType
                 }
             } catch (\Throwable $e) {
                 if (current_user_can('manage_options')) {
-                    return '<div class="bailaya-error">BailaYa error: ' . esc_html($e->getMessage()) . '</div>';
+                    return '<div class="bailaya-error">'
+                    . esc_html(sprintf(
+                        /* translators: %s: error message from the BailaYa API */
+                        __('BailaYa error: %s', 'bailaya'),
+                        $e->getMessage()
+                    ))
+                    . '</div>';
                 }
-                return '<div class="bailaya-error">Unable to load schedule.</div>';
+                return '<div class="bailaya-error">' . esc_html__('Unable to load schedule.', 'bailaya') . '</div>';
             }
         }
 

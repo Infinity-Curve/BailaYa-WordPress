@@ -1,11 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { PanelBody, TextControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
+import { PanelBody, TextControl, ToggleControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 
 wp.blocks.registerBlockType('bailaya/studio-profile-card', {
     edit: (props) => {
         const { attributes, setAttributes } = props;
-        const { override_id, locale, cache_ttl, address_label, business_hours_label } = attributes;
+        const { override_id, locale, cache_ttl, address_label, business_hours_label, show_all_locations } = attributes;
         const blockProps = useBlockProps();
 
         return (
@@ -23,6 +23,12 @@ wp.blocks.registerBlockType('bailaya/studio-profile-card', {
                             value={locale || ''}
                             onChange={(v) => setAttributes({ locale: v })}
                             placeholder="en, es, fr..."
+                        />
+                        <ToggleControl
+                            label={__('Show all locations', 'bailaya')}
+                            checked={!!show_all_locations}
+                            onChange={(v) => setAttributes({ show_all_locations: v })}
+                            help={__('List every studio location instead of only the primary one.', 'bailaya')}
                         />
                         <NumberControl
                             label={__('Cache TTL (seconds)', 'bailaya')}

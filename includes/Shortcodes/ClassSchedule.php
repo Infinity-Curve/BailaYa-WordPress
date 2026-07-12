@@ -69,9 +69,15 @@ final class ClassSchedule
             } catch (\Throwable $e) {
                 // Show a friendly error to editors; hide details to visitors
                 if (current_user_can('manage_options')) {
-                    return '<div class="bailaya-error">BailaYa error: ' . esc_html($e->getMessage()) . '</div>';
+                    return '<div class="bailaya-error">'
+                    . esc_html(sprintf(
+                        /* translators: %s: error message from the BailaYa API */
+                        __('BailaYa error: %s', 'bailaya'),
+                        $e->getMessage()
+                    ))
+                    . '</div>';
                 }
-                return '<div class="bailaya-error">Unable to load schedule.</div>';
+                return '<div class="bailaya-error">' . esc_html__('Unable to load schedule.', 'bailaya') . '</div>';
             }
         }
 

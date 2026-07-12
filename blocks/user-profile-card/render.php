@@ -1,5 +1,9 @@
 <?php
 if (!defined('ABSPATH')) exit;
+// This file is included from inside a function (the block's render_callback), so the variables
+// below are function-scoped, not global. PHPCS analyses it standalone and cannot
+// see that, hence the disable.
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 
 use BailaYaWP\ClientFactory;
 use BailaYaWP\Renderer;
@@ -15,7 +19,8 @@ $atts = wp_parse_args($attributes ?? [], [
 
 $userId = is_string($atts['user_id']) ? trim($atts['user_id']) : '';
 if ($userId === '') {
-    return '<div class="bailaya-error">Missing required attribute: user_id</div>';
+    echo wp_kses('<div class="bailaya-error">' . esc_html__('Missing required attribute: user_id', 'bailaya') . '</div>', Helpers::allowed_html());
+    return;
 }
 
 $locale = is_string($atts['locale']) ? trim($atts['locale']) : '';
@@ -40,16 +45,27 @@ if ($profile === null) {
         }
     } catch (\Throwable $e) {
         if (current_user_can('manage_options')) {
-            return '<div class="bailaya-error">BailaYa error: ' . esc_html($e->getMessage()) . '</div>';
+            echo wp_kses('<div class="bailaya-error">'
+                    . esc_html(sprintf(
+                        /* translators: %s: error message from the BailaYa API */
+                        __('BailaYa error: %s', 'bailaya'),
+                        $e->getMessage()
+                    ))
+                    . '</div>', Helpers::allowed_html());
+            return;
         }
-        return '<div class="bailaya-error">Unable to load user profile.</div>';
+        echo wp_kses('<div class="bailaya-error">' . esc_html__('Unable to load user profile.', 'bailaya') . '</div>', Helpers::allowed_html());
+        return;
     }
 }
 
-echo Renderer::userProfileCard($profile, [
+echo wp_kses(
+    Renderer::userProfileCard($profile, [
     'locale' => $locale ?: 'en',
     'labels' => [
         'occupationLabel' => (string)($atts['occupation_label'] ?? ''),
         'experienceLabel' => (string)($atts['experience_label'] ?? ''),
     ],
-]);
+]),
+    Helpers::allowed_html()
+);

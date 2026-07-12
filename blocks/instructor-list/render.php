@@ -1,5 +1,9 @@
 <?php
 if (!defined('ABSPATH')) exit;
+// This file is included from inside a function (the block's render_callback), so the variables
+// below are function-scoped, not global. PHPCS analyses it standalone and cannot
+// see that, hence the disable.
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 
 use BailaYaWP\ClientFactory;
 use BailaYaWP\Renderer;
@@ -39,10 +43,21 @@ if ($instructors === null) {
         }
     } catch (\Throwable $e) {
         if (current_user_can('manage_options')) {
-            return '<div class="bailaya-error">BailaYa error: ' . esc_html($e->getMessage()) . '</div>';
+            echo wp_kses('<div class="bailaya-error">'
+                    . esc_html(sprintf(
+                        /* translators: %s: error message from the BailaYa API */
+                        __('BailaYa error: %s', 'bailaya'),
+                        $e->getMessage()
+                    ))
+                    . '</div>', Helpers::allowed_html());
+            return;
         }
-        return '<div class="bailaya-error">Unable to load instructors.</div>';
+        echo wp_kses('<div class="bailaya-error">' . esc_html__('Unable to load instructors.', 'bailaya') . '</div>', Helpers::allowed_html());
+        return;
     }
 }
 
-echo Renderer::instructorList($instructors);
+echo wp_kses(
+    Renderer::instructorList($instructors),
+    Helpers::allowed_html()
+);

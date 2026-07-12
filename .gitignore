@@ -53,3 +53,6 @@ Thumbs.db
 *.tgz
 package-lock.json
 .pnpm-debug.log
+
+# Packaged plugin releases (build-release.mjs)
+dist/

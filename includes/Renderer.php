@@ -3,9 +3,14 @@ declare(strict_types=1);
 
 namespace BailaYaWP;
 
+use BailaYa\Dto\Instructor;
 use BailaYa\Dto\PrivateLessonInstructor;
 use BailaYa\Dto\StudioClass;
+use BailaYa\Dto\StudioEvent;
+use BailaYa\Dto\StudioLocation;
 use BailaYa\Dto\StudioPackage;
+use BailaYa\Dto\StudioProfile;
+use BailaYa\Dto\UserProfile;
 
 if (!defined('ABSPATH')) exit;
 
@@ -53,6 +58,53 @@ final class Renderer
         ob_start();
         $template = BAILAYA_WP_PATH . 'templates/class-schedule.php';
         /** @var list<StudioClass> $classes */
+        include $template;
+        return (string)ob_get_clean();
+    }
+
+    /**
+     * Render an event list using a PHP template. Events are classes with no
+     * studio type, and carry a `host` rather than an instructor.
+     *
+     * @param list<StudioEvent> $events
+     * @param array{
+     *   locale?: string,
+     *   labels?: array{ host?: string, viewOnMap?: string, online?: string },
+     *   className?: string,
+     *   itemClassName?: string,
+     *   nameClassName?: string,
+     *   detailsClassName?: string,
+     *   locationClassName?: string,
+     *   mapLinkClassName?: string,
+     *   hostClassName?: string,
+     *   hideLocation?: bool
+     * } $opts
+     */
+    public static function eventSchedule(array $events, array $opts = []): string
+    {
+        wp_enqueue_style('bailaya');
+
+        $defaults = [
+            'locale' => get_locale() ?: 'en',
+            'labels' => [
+                'host' => __('Host:', 'bailaya'),
+                'viewOnMap' => __('View on map', 'bailaya'),
+                'online' => __('Online', 'bailaya'),
+            ],
+            'className' => 'bailaya-list',
+            'itemClassName' => 'bailaya-card',
+            'nameClassName' => 'bailaya-name',
+            'detailsClassName' => 'bailaya-details',
+            'locationClassName' => 'bailaya-location',
+            'mapLinkClassName' => 'bailaya-map-link',
+            'hostClassName' => 'bailaya-instructor',
+            'hideLocation' => false,
+        ];
+        $data = array_replace_recursive($defaults, $opts);
+
+        ob_start();
+        $template = BAILAYA_WP_PATH . 'templates/event-schedule.php';
+        /** @var list<StudioEvent> $events */
         include $template;
         return (string)ob_get_clean();
     }
@@ -214,11 +266,60 @@ final class Renderer
     }
 
     /**
+     * Render the studio's locations (primary first).
+     *
+     * @param list<StudioLocation> $locations
+     * @param array{
+     *   locale?: string,
+     *   hidePrimaryBadge?: bool,
+     *   hideDirections?: bool,
+     *   className?: string,
+     *   itemClassName?: string,
+     *   nameClassName?: string,
+     *   addressClassName?: string,
+     *   badgeClassName?: string,
+     *   linkClassName?: string,
+     *   labels?: array{
+     *     primary?: string,
+     *     directions?: string
+     *   }
+     * } $opts
+     */
+    public static function locationList(array $locations, array $opts = []): string
+    {
+        wp_enqueue_style('bailaya');
+
+        $defaults = [
+            'locale'           => get_locale() ?: 'en',
+            'hidePrimaryBadge' => false,
+            'hideDirections'   => false,
+            'className'        => 'bailaya-loc-grid',
+            'itemClassName'    => 'bailaya-loc-card',
+            'nameClassName'    => 'bailaya-loc-name',
+            'addressClassName' => 'bailaya-loc-address',
+            'badgeClassName'   => 'bailaya-loc-badge',
+            'linkClassName'    => 'bailaya-loc-link',
+            'labels'           => [
+                'primary'    => __('Primary', 'bailaya'),
+                'directions' => __('Directions', 'bailaya'),
+            ],
+        ];
+        $data = array_replace_recursive($defaults, $opts);
+
+        ob_start();
+        $template = BAILAYA_WP_PATH . 'templates/location-list.php';
+        /** @var list<StudioLocation> $locations */
+        include $template;
+        return (string) ob_get_clean();
+    }
+
+    /**
      * Render a studio profile card via template.
      *
      * @param StudioProfile $profile
      * @param array{
      *   locale?: string,
+     *   showAllLocations?: bool,
      *   className?: string,
      *   itemClassName?: string,
      *   imageWrapperClassName?: string,
@@ -227,6 +328,8 @@ final class Renderer
      *   nameClassName?: string,
      *   descriptionClassName?: string,
      *   labelClassName?: string,
+     *   locationClassName?: string,
+     *   locationNameClassName?: string,
      *   labels?: array{
      *     addressLabel?: string,
      *     businessHoursLabel?: string
@@ -239,6 +342,7 @@ final class Renderer
 
         $defaults = [
             'locale' => 'en',
+            'showAllLocations' => false,
             'className' => 'bailaya-studio mt-6 md:mt-12 space-y-8',
             'itemClassName' => 'bailaya-studio-card flex flex-col md:flex-row items-center rounded-lg border border-[#DCDCDC] shadow-lg overflow-hidden',
             'imageWrapperClassName' => 'bailaya-studio-imgwrap w-full p-4 pb-0 md:pb-4 md:w-1/3 aspect-square',
@@ -247,6 +351,8 @@ final class Renderer
             'nameClassName' => 'bailaya-studio-name text-xl md:text-3xl font-semibold text-[#2A2343]',
             'descriptionClassName' => 'bailaya-studio-desc mt-2 text-sm md:text-lg text-[#464646]',
             'labelClassName' => 'bailaya-studio-label mt-1 text-sm text-gray-600',
+            'locationClassName' => 'bailaya-studio-location mt-1 text-sm text-gray-600',
+            'locationNameClassName' => 'bailaya-studio-location-name font-semibold',
             'labels' => [
                 'addressLabel' => '',
                 'businessHoursLabel' => '',

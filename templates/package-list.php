@@ -1,4 +1,10 @@
 <?php
+// Direct access to a template file must not execute anything.
+if (!defined('ABSPATH')) exit;
+// This file is included from inside a function (BailaYaWP\Renderer's static render methods), so the variables
+// below are function-scoped, not global. PHPCS analyses it standalone and cannot
+// see that, hence the disable.
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 /** @var array $data */
 /** @var list<BailaYa\Dto\StudioPackage> $packages */
 

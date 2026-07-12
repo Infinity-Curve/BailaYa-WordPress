@@ -18,6 +18,9 @@ final class StudioProfileCard
 
     /**
      * [bailaya_studio_profile override_id="studio-123" locale="es" cache_ttl="600" address_label="Dirección" business_hours_label="Horario"]
+     *
+     * By default the card shows the studio's primary location. Pass
+     * show_all_locations="true" to list every location instead.
      */
     public function handle(array $atts): string
     {
@@ -27,10 +30,12 @@ final class StudioProfileCard
             'cache_ttl' => null,
             'address_label' => '',
             'business_hours_label' => '',
+            'show_all_locations' => 'false',
         ], $atts);
 
         $overrideId = Helpers::sanitize_studio_id($atts['override_id'] ?? null);
         $locale = is_string($atts['locale'] ?? null) ? trim($atts['locale']) : null;
+        $showAllLocations = filter_var($atts['show_all_locations'], FILTER_VALIDATE_BOOLEAN);
 
         $ttl = (int)($atts['cache_ttl'] ?? Helpers::get_option('cache_ttl', 300));
         $ttl = max(0, $ttl);
@@ -58,14 +63,21 @@ final class StudioProfileCard
                 }
             } catch (\Throwable $e) {
                 if (current_user_can('manage_options')) {
-                    return '<div class="bailaya-error">BailaYa error: ' . esc_html($e->getMessage()) . '</div>';
+                    return '<div class="bailaya-error">'
+                    . esc_html(sprintf(
+                        /* translators: %s: error message from the BailaYa API */
+                        __('BailaYa error: %s', 'bailaya'),
+                        $e->getMessage()
+                    ))
+                    . '</div>';
                 }
-                return '<div class="bailaya-error">Unable to load studio profile.</div>';
+                return '<div class="bailaya-error">' . esc_html__('Unable to load studio profile.', 'bailaya') . '</div>';
             }
         }
 
         return Renderer::studioProfileCard($profile, [
             'locale' => $locale ?: 'en',
+            'showAllLocations' => $showAllLocations,
             'labels' => [
                 'addressLabel' => (string)($atts['address_label'] ?? ''),
                 'businessHoursLabel' => (string)($atts['business_hours_label'] ?? ''),

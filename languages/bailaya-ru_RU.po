@@ -1,0 +1,739 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: BailaYa 1.8.2\n"
+"Report-Msgid-Bugs-To: https://www.bailaya.com\n"
+"POT-Creation-Date: 2026-07-12 22:24+0200\n"
+"PO-Revision-Date: 2026-07-12 00:00+0000\n"
+"Last-Translator: Infinity Curve LLC <support@bailaya.com>\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: BailaYa i18n\n"
+
+#: blocks/class-schedule-by-type/render.php:23
+msgid "Missing required attribute: type_name"
+msgstr "Отсутствует обязательный атрибут: type_name"
+
+#. translators: %s: error message from the BailaYa API
+#: blocks/class-schedule-by-type/render.php:63
+#: blocks/class-schedule/render.php:64 blocks/event-schedule/render.php:60
+#: blocks/instructor-list/render.php:49 blocks/location-list/render.php:55
+#: blocks/package-list/render.php:55
+#: blocks/private-lesson-instructors/render.php:53
+#: blocks/studio-profile-card/render.php:56
+#: blocks/user-profile-card/render.php:51
+#: includes/Shortcodes/ClassSchedule.php:75
+#: includes/Shortcodes/ClassScheduleByType.php:77
+#: includes/Shortcodes/EventSchedule.php:73
+#: includes/Shortcodes/InstructorList.php:62
+#: includes/Shortcodes/LocationList.php:68
+#: includes/Shortcodes/PackageList.php:68
+#: includes/Shortcodes/PrivateLessonInstructors.php:66
+#: includes/Shortcodes/StudioProfileCard.php:69
+#: includes/Shortcodes/UserProfileCard.php:62
+#, php-format
+msgid "BailaYa error: %s"
+msgstr "Ошибка BailaYa: %s"
+
+#: blocks/class-schedule-by-type/render.php:69
+#: blocks/class-schedule/render.php:70 includes/Shortcodes/ClassSchedule.php:80
+#: includes/Shortcodes/ClassScheduleByType.php:82
+msgid "Unable to load schedule."
+msgstr "Не удалось загрузить расписание."
+
+#: blocks/event-schedule/render.php:66 includes/Shortcodes/EventSchedule.php:78
+msgid "Unable to load events."
+msgstr "Не удалось загрузить события."
+
+#: blocks/instructor-list/render.php:55
+#: includes/Shortcodes/InstructorList.php:67
+msgid "Unable to load instructors."
+msgstr "Не удалось загрузить преподавателей."
+
+#: blocks/location-list/render.php:61 includes/Shortcodes/LocationList.php:73
+msgid "Unable to load locations."
+msgstr "Не удалось загрузить локации."
+
+#: blocks/package-list/render.php:61 includes/Shortcodes/PackageList.php:73
+msgid "Unable to load packages."
+msgstr "Не удалось загрузить абонементы."
+
+#: blocks/private-lesson-instructors/render.php:59
+#: includes/Shortcodes/PrivateLessonInstructors.php:71
+msgid "Unable to load private lesson instructors."
+msgstr "Не удалось загрузить преподавателей индивидуальных занятий."
+
+#: blocks/studio-profile-card/render.php:62
+#: includes/Shortcodes/StudioProfileCard.php:74
+msgid "Unable to load studio profile."
+msgstr "Не удалось загрузить профиль студии."
+
+#: blocks/user-profile-card/render.php:22
+#: includes/Shortcodes/UserProfileCard.php:33
+msgid "Missing required attribute: user_id"
+msgstr "Отсутствует обязательный атрибут: user_id"
+
+#: blocks/user-profile-card/render.php:57
+#: includes/Shortcodes/UserProfileCard.php:67
+msgid "Unable to load user profile."
+msgstr "Не удалось загрузить профиль пользователя."
+
+#: includes/Admin/ManagementPage.php:84
+msgid "You do not have permission to manage BailaYa data."
+msgstr "У вас нет прав на управление данными BailaYa."
+
+#: includes/Admin/ManagementPage.php:89
+msgid "Unknown BailaYa resource."
+msgstr "Неизвестный ресурс BailaYa."
+
+#. translators: %s: link to the settings page
+#: includes/Admin/ManagementPage.php:100
+#, php-format
+msgid "Add an API key or access token in %s to manage this data."
+msgstr ""
+"Добавьте ключ API или токен доступа в разделе %s, чтобы управлять этими "
+"данными."
+
+#: includes/Admin/ManagementPage.php:102
+msgid "Settings → BailaYa"
+msgstr "Настройки → BailaYa"
+
+#. translators: %s: resource name, e.g. "class" or "instructor"
+#: includes/Admin/ManagementPage.php:177 includes/Admin/ManagementPage.php:308
+#, php-format
+msgid "Add %s"
+msgstr "Добавить: %s"
+
+#: includes/Admin/ManagementPage.php:186
+msgid "Actions"
+msgstr "Действия"
+
+#: includes/Admin/ManagementPage.php:192
+msgid "Nothing here yet."
+msgstr "Пока ничего нет."
+
+#: includes/Admin/ManagementPage.php:227
+msgid "Edit"
+msgstr "Изменить"
+
+#: includes/Admin/ManagementPage.php:238
+msgid "Delete this item? This cannot be undone."
+msgstr "Удалить эту запись? Действие необратимо."
+
+#: includes/Admin/ManagementPage.php:239
+msgid "Delete"
+msgstr "Удалить"
+
+#: includes/Admin/ManagementPage.php:254
+msgid "‹ Previous"
+msgstr "‹ Назад"
+
+#: includes/Admin/ManagementPage.php:263
+msgid "Next ›"
+msgstr "Далее ›"
+
+#: includes/Admin/ManagementPage.php:276
+msgid "Yes"
+msgstr "Да"
+
+#: includes/Admin/ManagementPage.php:276
+msgid "No"
+msgstr "Нет"
+
+#. translators: %s: resource name, e.g. "class" or "instructor"
+#: includes/Admin/ManagementPage.php:306
+#, php-format
+msgid "Edit %s"
+msgstr "Изменить: %s"
+
+#: includes/Admin/ManagementPage.php:333
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: includes/Admin/ManagementPage.php:333
+msgid "Create"
+msgstr "Создать"
+
+#: includes/Admin/ManagementPage.php:338
+msgid "Cancel"
+msgstr "Отмена"
+
+#: includes/Admin/ManagementPage.php:358
+msgid "(required)"
+msgstr "(обязательно)"
+
+#: includes/Admin/ManagementPage.php:387
+msgid "— none —"
+msgstr "— нет —"
+
+#: includes/Admin/ManagementPage.php:475 includes/Admin/ManagementPage.php:528
+msgid "You do not have permission to do that."
+msgstr "У вас нет прав на это действие."
+
+#: includes/Admin/ManagementPage.php:498
+msgid "This resource cannot be updated via the API."
+msgstr "Этот ресурс нельзя изменить через API."
+
+#. translators: %s: resource name, e.g. "Class" or "Instructor"
+#: includes/Admin/ManagementPage.php:503
+#, php-format
+msgid "%s updated."
+msgstr "%s обновлён."
+
+#. translators: %s: resource name, e.g. "Class" or "Instructor"
+#: includes/Admin/ManagementPage.php:510
+#, php-format
+msgid "%s created."
+msgstr "%s создан."
+
+#. translators: %s: resource name, e.g. "Class" or "Instructor"
+#: includes/Admin/ManagementPage.php:536
+#, php-format
+msgid "%s deleted."
+msgstr "%s удалён."
+
+#: includes/Admin/Resources.php:36
+msgid "Classes"
+msgstr "Занятия"
+
+#: includes/Admin/Resources.php:37
+msgid "Class"
+msgstr "Занятие"
+
+#: includes/Admin/Resources.php:39 includes/Admin/Resources.php:59
+#: includes/Admin/Resources.php:157 includes/Admin/Resources.php:169
+#: includes/Admin/Resources.php:184 includes/Admin/Resources.php:194
+#: includes/Admin/Resources.php:204 includes/Admin/Resources.php:217
+#: includes/Admin/Resources.php:247
+msgid "Name"
+msgstr "Название"
+
+#: includes/Admin/Resources.php:40 includes/Admin/Resources.php:60
+#: includes/Admin/Resources.php:248
+msgid "Discipline"
+msgstr "Направление"
+
+#: includes/Admin/Resources.php:41 includes/Admin/Resources.php:61
+#: includes/Admin/Resources.php:83 includes/Admin/Resources.php:96
+#: includes/Admin/Resources.php:249
+msgid "Level"
+msgstr "Уровень"
+
+#: includes/Admin/Resources.php:42 includes/Admin/Resources.php:62
+#: includes/Admin/Resources.php:250
+msgid "Date"
+msgstr "Дата"
+
+#: includes/Admin/Resources.php:43 includes/Admin/Resources.php:63
+msgid "Start"
+msgstr "Начало"
+
+#: includes/Admin/Resources.php:44 includes/Admin/Resources.php:64
+msgid "End"
+msgstr "Окончание"
+
+#: includes/Admin/Resources.php:45 includes/Admin/Resources.php:65
+#: includes/Admin/Resources.php:182 includes/Admin/Resources.php:269
+msgid "Room"
+msgstr "Зал"
+
+#: includes/Admin/Resources.php:56
+msgid "Events"
+msgstr "События"
+
+#: includes/Admin/Resources.php:57
+msgid "Event"
+msgstr "Событие"
+
+#: includes/Admin/Resources.php:77
+msgid "Students"
+msgstr "Ученики"
+
+#: includes/Admin/Resources.php:78
+msgid "Student"
+msgstr "Ученик"
+
+#: includes/Admin/Resources.php:80 includes/Admin/Resources.php:93
+#: includes/Admin/Resources.php:106 includes/Admin/Resources.php:118
+#: includes/Admin/Resources.php:129 includes/Admin/Resources.php:140
+msgid "First name"
+msgstr "Имя"
+
+#: includes/Admin/Resources.php:81 includes/Admin/Resources.php:94
+#: includes/Admin/Resources.php:107 includes/Admin/Resources.php:119
+#: includes/Admin/Resources.php:130 includes/Admin/Resources.php:141
+msgid "Last name"
+msgstr "Фамилия"
+
+#: includes/Admin/Resources.php:82 includes/Admin/Resources.php:95
+#: includes/Admin/Resources.php:108 includes/Admin/Resources.php:120
+#: includes/Admin/Resources.php:131 includes/Admin/Resources.php:142
+msgid "Email"
+msgstr "Эл. почта"
+
+#: includes/Admin/Resources.php:84 includes/Admin/Resources.php:97
+#: includes/Admin/Resources.php:121 includes/Admin/Resources.php:143
+msgid "Phone"
+msgstr "Телефон"
+
+#: includes/Admin/Resources.php:85 includes/Admin/Resources.php:98
+#: includes/Admin/Resources.php:110 includes/Admin/Resources.php:133
+msgid "Status"
+msgstr "Статус"
+
+#: includes/Admin/Resources.php:96
+msgid "e.g. Beginner, Intermediate, Advanced."
+msgstr "например: начинающий, средний, продвинутый."
+
+#: includes/Admin/Resources.php:103
+msgid "Instructors"
+msgstr "Преподаватели"
+
+#: includes/Admin/Resources.php:104 includes/Admin/Resources.php:145
+#: includes/Admin/Resources.php:253
+msgid "Instructor"
+msgstr "Преподаватель"
+
+#: includes/Admin/Resources.php:109 includes/Admin/Resources.php:132
+#: includes/Admin/Resources.php:144
+msgid "Role"
+msgstr "Роль"
+
+#: includes/Admin/Resources.php:126
+msgid "Team"
+msgstr "Команда"
+
+#: includes/Admin/Resources.php:127
+msgid "Team member"
+msgstr "Участник команды"
+
+#: includes/Admin/Resources.php:146
+msgid "Staff"
+msgstr "Персонал"
+
+#: includes/Admin/Resources.php:147
+msgid "Admin"
+msgstr "Администратор"
+
+#: includes/Admin/Resources.php:148
+msgid "Owner"
+msgstr "Владелец"
+
+#: includes/Admin/Resources.php:154
+msgid "Packages"
+msgstr "Абонементы"
+
+#: includes/Admin/Resources.php:155
+msgid "Package"
+msgstr "Абонемент"
+
+#: includes/Admin/Resources.php:158 includes/Admin/Resources.php:170
+#: includes/Admin/Resources.php:272
+msgid "Price"
+msgstr "Цена"
+
+#: includes/Admin/Resources.php:159 includes/Admin/Resources.php:171
+msgid "Sessions"
+msgstr "Занятий"
+
+#: includes/Admin/Resources.php:160 includes/Admin/Resources.php:172
+msgid "Valid (months)"
+msgstr "Срок действия (месяцев)"
+
+#: includes/Admin/Resources.php:161 includes/Admin/Resources.php:176
+msgid "Active"
+msgstr "Активен"
+
+#: includes/Admin/Resources.php:173
+msgid "Description"
+msgstr "Описание"
+
+#: includes/Admin/Resources.php:174
+msgid "Private lesson package"
+msgstr "Абонемент на индивидуальные занятия"
+
+#: includes/Admin/Resources.php:175
+msgid "Private lesson duration (mins)"
+msgstr "Длительность индивидуального занятия (мин.)"
+
+#: includes/Admin/Resources.php:181
+msgid "Rooms"
+msgstr "Залы"
+
+#: includes/Admin/Resources.php:185 includes/Admin/Resources.php:195
+#: includes/Admin/Resources.php:271
+msgid "Capacity"
+msgstr "Вместимость"
+
+#: includes/Admin/Resources.php:186 includes/Admin/Resources.php:196
+#: includes/Admin/Resources.php:202
+msgid "Location"
+msgstr "Локация"
+
+#: includes/Admin/Resources.php:194
+msgid "Unique per studio."
+msgstr "Уникально в пределах студии."
+
+#: includes/Admin/Resources.php:196
+msgid "Defaults to the studio's primary location."
+msgstr "По умолчанию — основная локация студии."
+
+#: includes/Admin/Resources.php:201
+msgid "Locations"
+msgstr "Локации"
+
+#: includes/Admin/Resources.php:205
+msgid "Address"
+msgstr "Адрес"
+
+#: includes/Admin/Resources.php:206 includes/Admin/Resources.php:220
+msgid "City"
+msgstr "Город"
+
+#: includes/Admin/Resources.php:207 includes/Admin/Resources.php:223
+msgid "Country"
+msgstr "Страна"
+
+#: includes/Admin/Resources.php:208 includes/Renderer.php:303
+msgid "Primary"
+msgstr "Основная"
+
+#: includes/Admin/Resources.php:218
+msgid "Address line 1"
+msgstr "Адрес, строка 1"
+
+#: includes/Admin/Resources.php:219
+msgid "Suite / Unit / Floor"
+msgstr "Корпус / квартира / этаж"
+
+#: includes/Admin/Resources.php:221
+msgid "State / Region"
+msgstr "Область / регион"
+
+#: includes/Admin/Resources.php:222
+msgid "Postal code"
+msgstr "Почтовый индекс"
+
+#: includes/Admin/Resources.php:223
+msgid "Two-letter ISO code, e.g. MX."
+msgstr "Двухбуквенный код ISO, например MX."
+
+#: includes/Admin/Resources.php:224
+msgid "Latitude"
+msgstr "Широта"
+
+#: includes/Admin/Resources.php:225
+msgid "Longitude"
+msgstr "Долгота"
+
+#: includes/Admin/Resources.php:226
+msgid "Primary location"
+msgstr "Основная локация"
+
+#: includes/Admin/Resources.php:226
+msgid ""
+"Promoting a location demotes the current primary. A studio always keeps "
+"exactly one."
+msgstr ""
+"Назначение локации основной снимает этот статус с текущей. У студии всегда "
+"ровно одна основная локация."
+
+#: includes/Admin/Resources.php:248
+msgid "e.g. Salsa."
+msgstr "например: сальса."
+
+#: includes/Admin/Resources.php:249
+msgid "e.g. Beginner."
+msgstr "например: начинающий."
+
+#: includes/Admin/Resources.php:251
+msgid "Start time"
+msgstr "Время начала"
+
+#: includes/Admin/Resources.php:252
+msgid "End time"
+msgstr "Время окончания"
+
+#: includes/Admin/Resources.php:254
+msgid "Repeat weekly until"
+msgstr "Повторять еженедельно до"
+
+#: includes/Admin/Resources.php:254
+msgid "Leave blank for a one-off."
+msgstr "Оставьте пустым, если занятие разовое."
+
+#: includes/Admin/Resources.php:260
+msgid "Dance type"
+msgstr "Тип танца"
+
+#: includes/Admin/Resources.php:264
+msgid "Leave blank to create an event instead of a class."
+msgstr "Оставьте пустым, чтобы создать событие вместо занятия."
+
+#: includes/Admin/Resources.php:270
+msgid "One-off location override"
+msgstr "Разовое изменение места"
+
+#: includes/Admin/Resources.php:273
+msgid "Allow packages"
+msgstr "Разрешить абонементы"
+
+#: includes/Admin/Resources.php:274
+msgid "Require a package"
+msgstr "Требовать абонемент"
+
+#: includes/Admin/Resources.php:275
+msgid "Held online"
+msgstr "Проводится онлайн"
+
+#: includes/Admin/Resources.php:276
+msgid "Virtual platform"
+msgstr "Платформа для онлайн-занятий"
+
+#: includes/Admin/Resources.php:277
+msgid "Zoom"
+msgstr "Zoom"
+
+#: includes/Admin/Resources.php:278
+msgid "Google Meet"
+msgstr "Google Meet"
+
+#: includes/Admin/Resources.php:279
+msgid "Teams"
+msgstr "Teams"
+
+#: includes/Admin/SettingsPage.php:17 includes/Admin/SettingsPage.php:189
+msgid "BailaYa Settings"
+msgstr "Настройки BailaYa"
+
+#: includes/Admin/SettingsPage.php:18
+msgid "BailaYa"
+msgstr "BailaYa"
+
+#: includes/Admin/SettingsPage.php:32
+msgid "API Configuration"
+msgstr "Настройка API"
+
+#: includes/Admin/SettingsPage.php:34
+msgid "Configure the BailaYa API connection used by the blocks and shortcodes."
+msgstr ""
+"Настройте подключение к API BailaYa, которое используют блоки и шорткоды."
+
+#: includes/Admin/SettingsPage.php:46
+#, php-format
+msgid ""
+"This plugin requires an account with BailaYa, a third-party dance studio "
+"management service. Your Studio ID comes from there. Sign up or sign in at "
+"%s."
+msgstr ""
+"Этому плагину нужна учётная запись в BailaYa — стороннем сервисе управления "
+"танцевальными студиями. Идентификатор студии выдаётся там. Зарегистрируйтесь "
+"или войдите на %s."
+
+#: includes/Admin/SettingsPage.php:54
+msgid "API Base URL"
+msgstr "Базовый URL API"
+
+#: includes/Admin/SettingsPage.php:61
+msgid "Default Studio ID"
+msgstr "Идентификатор студии по умолчанию"
+
+#: includes/Admin/SettingsPage.php:67
+msgid "Can be overridden per shortcode via <code>override_id</code>."
+msgstr "Можно переопределить в каждом шорткоде через <code>override_id</code>."
+
+#: includes/Admin/SettingsPage.php:72
+msgid "Cache TTL (seconds)"
+msgstr "Время жизни кэша (секунды)"
+
+#: includes/Admin/SettingsPage.php:78
+msgid "0 disables caching."
+msgstr "0 отключает кэширование."
+
+#: includes/Admin/SettingsPage.php:83
+msgid "Management API (optional)"
+msgstr "Management API (необязательно)"
+
+#: includes/Admin/SettingsPage.php:85
+msgid ""
+"Credentials for the authenticated Management API. The shortcodes and blocks "
+"above only use the public API and need none of this."
+msgstr ""
+"Учётные данные для Management API. Шорткоды и блоки выше используют только "
+"публичный API, и всё это им не нужно."
+
+#: includes/Admin/SettingsPage.php:90
+msgid "API Key"
+msgstr "Ключ API"
+
+#: includes/Admin/SettingsPage.php:96
+msgid ""
+"Looks like <code>bya_live_…</code>. The key already identifies the studio."
+msgstr "Выглядит как <code>bya_live_…</code>. Ключ уже определяет студию."
+
+#: includes/Admin/SettingsPage.php:101
+msgid "Access Token"
+msgstr "Токен доступа"
+
+#: includes/Admin/SettingsPage.php:107
+msgid "A user session or OIDC access token. Used only when no API key is set."
+msgstr ""
+"Токен пользовательской сессии или OIDC. Используется, только если не задан "
+"ключ API."
+
+#: includes/Admin/SettingsPage.php:112
+msgid "Sign in with BailaYa (optional)"
+msgstr "Вход через BailaYa (необязательно)"
+
+#: includes/Admin/SettingsPage.php:114
+msgid ""
+"Let visitors sign in to WordPress with their BailaYa account (OpenID "
+"Connect, PKCE). Register this redirect URI with your BailaYa OAuth client:"
+msgstr ""
+"Позвольте посетителям входить в WordPress с помощью учётной записи BailaYa "
+"(OpenID Connect, PKCE). Укажите этот redirect URI в своём OAuth-клиенте "
+"BailaYa:"
+
+#: includes/Admin/SettingsPage.php:120
+msgid "Enable"
+msgstr "Включить"
+
+#: includes/Admin/SettingsPage.php:123
+msgid "Show a “Sign in with BailaYa” button on the login screen."
+msgstr "Показывать кнопку «Войти через BailaYa» на странице входа."
+
+#: includes/Admin/SettingsPage.php:127
+msgid "Client ID"
+msgstr "Идентификатор клиента"
+
+#: includes/Admin/SettingsPage.php:134
+msgid "Client Secret"
+msgstr "Секрет клиента"
+
+#: includes/Admin/SettingsPage.php:140
+msgid ""
+"Confidential clients only. Leave blank for a public client (PKCE alone)."
+msgstr ""
+"Только для конфиденциальных клиентов. Оставьте пустым для публичного клиента "
+"(только PKCE)."
+
+#: includes/Admin/SettingsPage.php:145
+msgid "Auto-create users"
+msgstr "Создавать пользователей автоматически"
+
+#: includes/Admin/SettingsPage.php:148
+msgid "Create a WordPress account when no user matches the BailaYa email."
+msgstr ""
+"Создавать учётную запись WordPress, если ни один пользователь не "
+"соответствует адресу BailaYa."
+
+#: includes/Admin/SettingsPage.php:151
+msgid "When off, only people who already have a WordPress account can sign in."
+msgstr ""
+"Если параметр выключен, войти смогут только те, у кого уже есть учётная "
+"запись WordPress."
+
+#: includes/Admin/SettingsPage.php:156
+msgid "Role for new users"
+msgstr "Роль для новых пользователей"
+
+#: includes/Auth/SignInWithBailaya.php:98
+msgid "Sign in with BailaYa"
+msgstr "Войти через BailaYa"
+
+#: includes/Auth/SignInWithBailaya.php:137
+msgid "Sign in with BailaYa is not enabled."
+msgstr "Вход через BailaYa не включён."
+
+#: includes/Auth/SignInWithBailaya.php:216
+msgid "The BailaYa callback was missing its code or state."
+msgstr "В ответе BailaYa отсутствовал код или state."
+
+#: includes/Auth/SignInWithBailaya.php:222
+msgid "This sign-in request has expired. Please try again."
+msgstr "Срок действия запроса на вход истёк. Попробуйте ещё раз."
+
+#: includes/Auth/SignInWithBailaya.php:280
+msgid "BailaYa returned no subject claim."
+msgstr "BailaYa не вернул идентификатор пользователя (subject)."
+
+#: includes/Auth/SignInWithBailaya.php:299
+msgid "BailaYa returned no email address to match against."
+msgstr ""
+"BailaYa не вернул адрес электронной почты для сопоставления учётной записи."
+
+#: includes/Auth/SignInWithBailaya.php:310
+msgid ""
+"No WordPress account matches your BailaYa email, and automatic account "
+"creation is off."
+msgstr ""
+"Ни одна учётная запись WordPress не соответствует вашему адресу BailaYa, а "
+"автоматическое создание учётных записей отключено."
+
+#: includes/Renderer.php:43
+msgid "Instructor:"
+msgstr "Преподаватель:"
+
+#: includes/Renderer.php:44 includes/Renderer.php:91
+msgid "View on map"
+msgstr "Посмотреть на карте"
+
+#: includes/Renderer.php:45 includes/Renderer.php:92
+msgid "Online"
+msgstr "Онлайн"
+
+#: includes/Renderer.php:90
+msgid "Host:"
+msgstr "Ведущий:"
+
+#: includes/Renderer.php:190
+msgid "Buy Now"
+msgstr "Купить"
+
+#: includes/Renderer.php:191
+msgid "classes"
+msgstr "занятий"
+
+#: includes/Renderer.php:192
+msgid "Valid for"
+msgstr "Действует"
+
+#: includes/Renderer.php:193
+msgid "month"
+msgstr "месяц"
+
+#: includes/Renderer.php:194
+msgid "months"
+msgstr "месяцев"
+
+#: includes/Renderer.php:253
+msgid "Availability"
+msgstr "Доступность"
+
+#: includes/Renderer.php:254
+msgid "Pricing"
+msgstr "Стоимость"
+
+#: includes/Renderer.php:255
+msgid "Book Now"
+msgstr "Записаться"
+
+#: includes/Renderer.php:256
+msgid "min"
+msgstr "мин."
+
+#: includes/Renderer.php:304
+msgid "Directions"
+msgstr "Маршрут"
+
+#: includes/Shortcodes/ClassScheduleByType.php:37
+msgid "Missing required attribute: type"
+msgstr "Отсутствует обязательный атрибут: type"
+
+#: templates/studio-profile-card.php:28
+msgid "Business Hours"
+msgstr "Часы работы"

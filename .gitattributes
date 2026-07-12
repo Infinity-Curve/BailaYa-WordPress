@@ -1,3 +1,7 @@
+# Normalize line endings to LF. Mixed endings in a single file trip Plugin Check
+# (Internal.LineEndings.Mixed) and are easy to reintroduce from a Windows checkout.
+* text=auto eol=lf
+
 # Exclude development files from export
 /.gitignore export-ignore
 /.gitattributes export-ignore

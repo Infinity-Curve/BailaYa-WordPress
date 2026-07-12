@@ -1,0 +1,20 @@
+{
+  "apiVersion": 3,
+  "name": "bailaya/location-list",
+  "title": "BailaYa: Locations",
+  "category": "widgets",
+  "icon": "location",
+  "description": "Display the studio's locations, primary first.",
+  "textdomain": "bailaya",
+  "attributes": {
+    "override_id":        { "type": "string",  "default": "" },
+    "locale":             { "type": "string",  "default": "" },
+    "hide_primary_badge": { "type": "boolean", "default": false },
+    "hide_directions":    { "type": "boolean", "default": false },
+    "cache_ttl":          { "type": "number",  "default": 0 }
+  },
+  "style": "bailaya-frontend-styles",
+  "editorScript": "file:./build/index.js",
+  "render": "file:./render.php",
+  "supports": { "html": false, "align": ["wide", "full"] }
+}

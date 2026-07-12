@@ -56,3 +56,14 @@
 .bailaya-pl-pricing-entry { font-size: .875rem; color: #464646; line-height: 1.6; }
 .bailaya-pl-btn { display: inline-block; margin-top: 1.25rem; padding: .625rem 1.5rem; background: #EC094D; color: #fff; border-radius: 100rem; font-weight: 700; font-size: .875rem; text-transform: uppercase; text-decoration: none; }
 
+
+/* Locations */
+.bailaya-loc-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+@media (min-width: 640px) { .bailaya-loc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .bailaya-loc-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.bailaya-loc-card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem 1.25rem 1.25rem; border: 1px solid #DCDCDC; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); background: #fff; }
+.bailaya-loc-name { display: flex; align-items: center; gap: 0.5rem; margin: 0; font-weight: 600; font-size: 1.125rem; color: #2A2343; }
+.bailaya-loc-badge { padding: 0.125rem 0.5rem; border-radius: 100rem; background: #EC094D; color: #FFFFFF; font-size: 0.75rem; font-weight: 600; line-height: 1.4; }
+.bailaya-loc-address { margin: 0; font-size: 0.875rem; color: #464646; }
+.bailaya-loc-link { align-self: flex-start; font-size: 0.875rem; font-weight: 600; color: #EC094D; text-decoration: none; }
+.bailaya-loc-link:hover { opacity: 0.8; text-decoration: underline; }

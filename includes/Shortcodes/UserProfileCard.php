@@ -30,7 +30,7 @@ final class UserProfileCard
 
         $userId = is_string($atts['user_id']) ? trim($atts['user_id']) : '';
         if ($userId === '') {
-            return '<div class="bailaya-error">Missing required attribute: user_id</div>';
+            return '<div class="bailaya-error">' . esc_html__('Missing required attribute: user_id', 'bailaya') . '</div>';
         }
 
         $locale = is_string($atts['locale']) ? trim($atts['locale']) : '';
@@ -56,9 +56,15 @@ final class UserProfileCard
                 }
             } catch (\Throwable $e) {
                 if (current_user_can('manage_options')) {
-                    return '<div class="bailaya-error">BailaYa error: ' . esc_html($e->getMessage()) . '</div>';
+                    return '<div class="bailaya-error">'
+                    . esc_html(sprintf(
+                        /* translators: %s: error message from the BailaYa API */
+                        __('BailaYa error: %s', 'bailaya'),
+                        $e->getMessage()
+                    ))
+                    . '</div>';
                 }
-                return '<div class="bailaya-error">Unable to load user profile.</div>';
+                return '<div class="bailaya-error">' . esc_html__('Unable to load user profile.', 'bailaya') . '</div>';
             }
         }
 

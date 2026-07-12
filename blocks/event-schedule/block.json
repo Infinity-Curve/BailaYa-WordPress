@@ -1,0 +1,20 @@
+{
+  "apiVersion": 3,
+  "name": "bailaya/event-schedule",
+  "title": "BailaYa: Event Schedule",
+  "category": "widgets",
+  "icon": "calendar-alt",
+  "description": "Embed upcoming BailaYa events (7-day window).",
+  "textdomain": "bailaya",
+  "attributes": {
+    "override_id":   { "type": "string",  "default": "" },
+    "locale":        { "type": "string",  "default": "" },
+    "from":          { "type": "string",  "default": "" },
+    "hide_location": { "type": "boolean", "default": false },
+    "cache_ttl":     { "type": "number",  "default": 0 }
+  },
+  "style": "bailaya-frontend-styles",
+  "editorScript": "file:./build/index.js",
+  "render": "file:./render.php",
+  "supports": { "html": false, "align": ["wide", "full"] }
+}

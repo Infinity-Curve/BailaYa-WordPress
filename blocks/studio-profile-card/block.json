@@ -11,7 +11,8 @@
     "locale": { "type": "string", "default": "" },
     "cache_ttl": { "type": "number", "default": 0 },
     "address_label": { "type": "string", "default": "" },
-    "business_hours_label": { "type": "string", "default": "" }
+    "business_hours_label": { "type": "string", "default": "" },
+    "show_all_locations": { "type": "boolean", "default": false }
   },
   "style": "bailaya-frontend-styles",
   "editorScript": "file:./build/index.js",
