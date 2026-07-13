@@ -158,6 +158,102 @@ final class Helpers
         return $opts[$key] ?? $default;
     }
 
+    /**
+     * Capabilities that make a role unsafe to hand to an account created by an
+     * unauthenticated visitor coming back from the OAuth callback.
+     *
+     * Anything that can administer the site, manage other users, or publish
+     * unfiltered HTML is out. In practice this leaves Subscriber, Contributor and
+     * Author, plus any custom role of similar standing.
+     *
+     * @return list<string>
+     */
+    public static function privileged_capabilities(): array
+    {
+        return [
+            'manage_options',
+            'edit_users',
+            'create_users',
+            'delete_users',
+            'promote_users',
+            'list_users',
+            'activate_plugins',
+            'install_plugins',
+            'edit_plugins',
+            'update_plugins',
+            'switch_themes',
+            'install_themes',
+            'edit_themes',
+            'update_core',
+            'edit_files',
+            'import',
+            'export',
+            'unfiltered_html',
+            'edit_others_posts',
+            'manage_categories',
+        ];
+    }
+
+    /**
+     * Whether a role carries any capability from {@see privileged_capabilities()}.
+     * An unknown role counts as privileged: if we cannot see what it grants, we
+     * must not assume it grants nothing.
+     */
+    public static function is_role_privileged(string $role): bool
+    {
+        $wpRole = get_role($role);
+        if (!$wpRole) {
+            return true;
+        }
+
+        foreach (self::privileged_capabilities() as $cap) {
+            if ($wpRole->has_cap($cap)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Roles an auto-created OAuth user may be given, as slug => display name.
+     *
+     * @return array<string, string>
+     */
+    public static function assignable_roles(): array
+    {
+        $roles = [];
+
+        foreach (wp_roles()->get_names() as $slug => $label) {
+            if (!self::is_role_privileged((string)$slug)) {
+                $roles[(string)$slug] = translate_user_role((string)$label);
+            }
+        }
+
+        return $roles;
+    }
+
+    /**
+     * The role to give a newly auto-created OAuth user.
+     *
+     * Re-validated here rather than trusted from the option: the settings screen
+     * already refuses a privileged role, but a role's capabilities can be changed
+     * after the fact, and the option can be written by anything with database or
+     * `update_option` access. This is the last gate before wp_insert_user().
+     */
+    public static function oauth_default_role(): string
+    {
+        $role = (string)self::get_option('oauth_default_role', 'subscriber');
+
+        if ($role !== '' && !self::is_role_privileged($role)) {
+            return $role;
+        }
+
+        // Fall back to Subscriber — unless this site has granted Subscriber
+        // privileged capabilities too, in which case the account is created with
+        // no role at all rather than an unsafe one.
+        return self::is_role_privileged('subscriber') ? '' : 'subscriber';
+    }
+
     public static function sanitize_studio_id(?string $v): ?string
     {
         $v = is_string($v) ? trim($v) : null;

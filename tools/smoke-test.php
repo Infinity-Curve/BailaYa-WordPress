@@ -97,7 +97,19 @@ function submit_button(...$a): void {}
 function settings_fields(...$a): void {}
 function do_settings_sections(...$a): void {}
 function wp_dropdown_roles(string $s = ''): void {}
-function wp_roles() { return new class { public function get_names(): array { return ['subscriber' => 'Subscriber']; } }; }
+function wp_roles() { return new class { public function get_names(): array { return ['subscriber' => 'Subscriber', 'administrator' => 'Administrator']; } }; }
+function get_role(string $role) {
+    // Enough of WP_Role to exercise Helpers::is_role_privileged(): Administrator
+    // holds the privileged caps, Subscriber holds none.
+    return match ($role) {
+        'administrator' => new class { public function has_cap(string $cap): bool { return true; } },
+        'subscriber' => new class { public function has_cap(string $cap): bool { return false; } },
+        default => null,
+    };
+}
+function translate_user_role(string $name, string $d = ''): string { return $name; }
+function get_current_user_id(): int { return 1; }
+function delete_transient(string $k): bool { return true; }
 function admin_url(string $p = ''): string { return 'https://example.test/wp-admin/' . $p; }
 function home_url(string $p = ''): string { return 'https://example.test' . $p; }
 function wp_login_url(): string { return 'https://example.test/wp-login.php'; }
@@ -168,6 +180,20 @@ if ($phantom) {
 }
 if (count($GLOBALS['__blocks']) !== 9) {
     echo "\nFAILED: expected 9 blocks, registered " . count($GLOBALS['__blocks']) . "\n";
+    exit(1);
+}
+
+// "Sign in with BailaYa" creates accounts for people who are not logged in, so no
+// privileged role may ever be on offer for them — not in the settings dropdown, and
+// not as the role handed to wp_insert_user().
+$assignable = array_keys(BailaYaWP\Helpers::assignable_roles());
+if (in_array('administrator', $assignable, true)) {
+    echo "\nFAILED: administrator is offered as an auto-provisioned OAuth role\n";
+    exit(1);
+}
+$defaultRole = BailaYaWP\Helpers::oauth_default_role();
+if ($defaultRole !== '' && BailaYaWP\Helpers::is_role_privileged($defaultRole)) {
+    echo "\nFAILED: OAuth users would be created with the privileged role '$defaultRole'\n";
     exit(1);
 }
 

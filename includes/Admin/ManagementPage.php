@@ -20,6 +20,8 @@ final class ManagementPage
 {
     private const CAPABILITY = 'manage_options';
     private const PER_PAGE = 20;
+    private const NOTICE_TRANSIENT = 'bailaya_notice_';
+    private const NOTICE_TTL = 60;
 
     public function register(): void
     {
@@ -123,23 +125,29 @@ final class ManagementPage
         echo '</div>';
     }
 
-    /** Shows the outcome of the last save/delete, passed back via the redirect. */
+    /**
+     * Shows the outcome of the last save/delete.
+     *
+     * The message is handed over in a short-lived transient scoped to the current
+     * user, never in the URL. Carrying it in a query arg would mean rendering text
+     * of the visitor's choosing inside an admin notice — escaped, so not an XSS,
+     * but still a link an attacker could send an administrator to make WordPress
+     * tell them whatever it liked.
+     */
     private function renderNotice(): void
     {
-        // Display-only: these come back from our own post-save/delete redirect and are
-        // escaped before output. No mutation happens here, so there is no nonce to check.
-        // phpcs:disable WordPress.Security.NonceVerification.Recommended
-        $message = isset($_GET['bailaya_message']) ? sanitize_text_field(wp_unslash((string)$_GET['bailaya_message'])) : '';
-        if ($message === '') {
+        $key    = self::NOTICE_TRANSIENT . get_current_user_id();
+        $notice = get_transient($key);
+
+        if (!is_array($notice) || empty($notice['message'])) {
             return;
         }
+        delete_transient($key);
 
-        $isError = isset($_GET['bailaya_status']) && $_GET['bailaya_status'] === 'error';
-        // phpcs:enable WordPress.Security.NonceVerification.Recommended
         printf(
             '<div class="notice notice-%s is-dismissible"><p>%s</p></div>',
-            $isError ? 'error' : 'success',
-            esc_html($message)
+            empty($notice['error']) ? 'success' : 'error',
+            esc_html((string)$notice['message'])
         );
     }
 
@@ -583,14 +591,13 @@ final class ManagementPage
 
     private function redirect(string $key, string $message, bool $isError): void
     {
-        wp_safe_redirect(add_query_arg(
-            [
-                'page' => 'bailaya-' . $key,
-                'bailaya_message' => rawurlencode($message),
-                'bailaya_status' => $isError ? 'error' : 'success',
-            ],
-            admin_url('admin.php')
-        ));
+        set_transient(
+            self::NOTICE_TRANSIENT . get_current_user_id(),
+            ['message' => $message, 'error' => $isError],
+            self::NOTICE_TTL
+        );
+
+        wp_safe_redirect(add_query_arg('page', 'bailaya-' . $key, admin_url('admin.php')));
         exit;
     }
 }

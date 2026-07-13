@@ -4,7 +4,7 @@ Tags: dance, schedule, classes, booking, studio
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 1.8.3
+Stable tag: 1.8.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,8 +82,14 @@ while leaving existing subscriptions intact.
 Turn on **Sign in with BailaYa** to add a sign-in button to the WordPress login screen.
 Visitors authenticate against BailaYa's OpenID Connect provider (authorization code with
 PKCE) and are matched to a WordPress account — first by a previously linked BailaYa
-account, then by email address. With auto-create off, only people who already have a
-WordPress account can sign in.
+account, then by email address. Sign-in is refused if BailaYa reports the address as
+unverified. With auto-create off, only people who already have a WordPress account can
+sign in.
+
+Because these accounts are created for people who are not logged in, the role given to
+them is restricted: only roles that cannot administer the site, manage other users or
+publish unfiltered HTML can be chosen, so Administrator and Editor are not on offer. The
+role is re-checked against its capabilities at the moment the account is created.
 
 The `bailaya_oauth_login` action fires after a successful sign-in with the `WP_User`,
 the OIDC claims and the tokens.
@@ -181,6 +187,14 @@ Set the cache lifetime to 0 on the settings screen, or pass `cache_ttl="0"` to a
 individual shortcode.
 
 == Changelog ==
+
+= 1.8.4 =
+* "Sign in with BailaYa" can no longer auto-create privileged accounts: only roles
+  that cannot administer the site, manage users or post unfiltered HTML are offered,
+  and the role is re-checked before the account is created.
+* Sign-in is refused when BailaYa reports the account's email address as unverified.
+* Admin notices on the management screens are no longer passed through the URL.
+* Updated bundled libraries.
 
 = 1.8.3 =
 * Initial public release. The version number matches the BailaYa API clients the plugin

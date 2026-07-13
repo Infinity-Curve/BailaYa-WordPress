@@ -737,3 +737,15 @@ msgstr "Отсутствует обязательный атрибут: type"
 #: templates/studio-profile-card.php:28
 msgid "Business Hours"
 msgstr "Часы работы"
+
+#: includes/Admin/SettingsPage.php:174
+msgid ""
+"Administrator and other privileged roles are not offered: these accounts are "
+"created automatically for anyone who signs in with BailaYa."
+msgstr ""
+"Роль администратора и другие привилегированные роли недоступны: эти учётные "
+"записи создаются автоматически для всех, кто входит через BailaYa."
+
+#: includes/Auth/SignInWithBailaya.php:290
+msgid "Your BailaYa email address is not verified."
+msgstr "Ваш адрес эл. почты BailaYa не подтверждён."

@@ -738,3 +738,16 @@ msgstr "Falta el atributo obligatorio: type"
 #: templates/studio-profile-card.php:28
 msgid "Business Hours"
 msgstr "Horario comercial"
+
+#: includes/Admin/SettingsPage.php:174
+msgid ""
+"Administrator and other privileged roles are not offered: these accounts are "
+"created automatically for anyone who signs in with BailaYa."
+msgstr ""
+"Los roles de administrador y otros roles con privilegios no están "
+"disponibles: estas cuentas se crean automáticamente para cualquiera que "
+"inicie sesión con BailaYa."
+
+#: includes/Auth/SignInWithBailaya.php:290
+msgid "Your BailaYa email address is not verified."
+msgstr "Tu dirección de correo electrónico de BailaYa no está verificada."

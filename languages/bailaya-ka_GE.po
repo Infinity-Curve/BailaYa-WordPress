@@ -735,3 +735,15 @@ msgstr "აკლია სავალდებულო ატრიბუტ�
 #: templates/studio-profile-card.php:28
 msgid "Business Hours"
 msgstr "სამუშაო საათები"
+
+#: includes/Admin/SettingsPage.php:174
+msgid ""
+"Administrator and other privileged roles are not offered: these accounts are "
+"created automatically for anyone who signs in with BailaYa."
+msgstr ""
+"ადმინისტრატორის და სხვა პრივილეგირებული როლები არ არის ხელმისაწვდომი: ეს "
+"ანგარიშები ავტომატურად იქმნება ყველასთვის, ვინც BailaYa-ით შედის."
+
+#: includes/Auth/SignInWithBailaya.php:290
+msgid "Your BailaYa email address is not verified."
+msgstr "თქვენი BailaYa-ს ელფოსტის მისამართი არ არის დადასტურებული."

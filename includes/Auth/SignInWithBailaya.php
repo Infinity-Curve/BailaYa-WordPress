@@ -280,6 +280,16 @@ final class SignInWithBailaya
             $this->fail(__('BailaYa returned no subject claim.', 'bailaya'));
         }
 
+        // Accounts are matched by email address, so an email the provider tells us
+        // it has *not* verified must not be used: it would let someone claim an
+        // existing WordPress account by registering that address at the provider.
+        // A missing claim means the provider asserts nothing either way, which is
+        // not the same as asserting false, and is left to the provider's policy.
+        if (array_key_exists('email_verified', $claims)
+            && !filter_var($claims['email_verified'], FILTER_VALIDATE_BOOLEAN)) {
+            $this->fail(__('Your BailaYa email address is not verified.', 'bailaya'));
+        }
+
         // Previously linked account. There is no core API for "find the user with this
         // external subject", so this is a meta lookup by necessity. It is bounded to a
         // single row and runs at most once per sign-in, not per page view.
@@ -310,6 +320,10 @@ final class SignInWithBailaya
             $this->fail(__('No WordPress account matches your BailaYa email, and automatic account creation is off.', 'bailaya'));
         }
 
+        // Helpers::oauth_default_role() re-checks the stored role's capabilities
+        // rather than trusting the option: this account is being created for an
+        // unauthenticated visitor, so it must never come out privileged, whatever
+        // the option happens to say. A privileged role is downgraded to Subscriber.
         $userId = wp_insert_user([
             'user_login'   => $this->uniqueLogin($email),
             'user_email'   => $email,
@@ -317,7 +331,7 @@ final class SignInWithBailaya
             'first_name'   => sanitize_text_field((string)($claims['given_name'] ?? '')),
             'last_name'    => sanitize_text_field((string)($claims['family_name'] ?? '')),
             'display_name' => sanitize_text_field((string)($claims['name'] ?? $email)),
-            'role'         => (string)Helpers::get_option('oauth_default_role', 'subscriber'),
+            'role'         => Helpers::oauth_default_role(),
         ]);
 
         if (is_wp_error($userId)) {

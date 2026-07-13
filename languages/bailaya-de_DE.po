@@ -740,3 +740,15 @@ msgstr "Erforderliches Attribut fehlt: type"
 #: templates/studio-profile-card.php:28
 msgid "Business Hours"
 msgstr "Öffnungszeiten"
+
+#: includes/Admin/SettingsPage.php:174
+msgid ""
+"Administrator and other privileged roles are not offered: these accounts are "
+"created automatically for anyone who signs in with BailaYa."
+msgstr ""
+"Administrator und andere privilegierte Rollen werden nicht angeboten: Diese "
+"Konten werden automatisch für alle erstellt, die sich mit BailaYa anmelden."
+
+#: includes/Auth/SignInWithBailaya.php:290
+msgid "Your BailaYa email address is not verified."
+msgstr "Deine BailaYa-E-Mail-Adresse ist nicht bestätigt."

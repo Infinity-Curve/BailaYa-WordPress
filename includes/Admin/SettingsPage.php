@@ -154,10 +154,26 @@ final class SettingsPage
             }, 'bailaya-settings', 'bailaya_oauth');
 
             add_settings_field('oauth_default_role', __('Role for new users', 'bailaya'), function () {
-                $current = (string)Helpers::get_option('oauth_default_role', 'subscriber');
+                // Deliberately NOT wp_dropdown_roles(), which offers Administrator.
+                // These accounts are created by an unauthenticated visitor returning
+                // from the OAuth callback, so only roles that cannot administer the
+                // site, manage users or post unfiltered HTML are on offer.
+                $current = Helpers::oauth_default_role();
+
                 echo "<select name='bailaya_settings[oauth_default_role]'>";
-                wp_dropdown_roles($current);
+                foreach (Helpers::assignable_roles() as $slug => $label) {
+                    printf(
+                        '<option value="%s"%s>%s</option>',
+                        esc_attr($slug),
+                        selected($slug, $current, false),
+                        esc_html($label)
+                    );
+                }
                 echo '</select>';
+                echo '<p class="description">' . esc_html__(
+                    'Administrator and other privileged roles are not offered: these accounts are created automatically for anyone who signs in with BailaYa.',
+                    'bailaya'
+                ) . '</p>';
             }, 'bailaya-settings', 'bailaya_oauth');
         });
     }
@@ -165,7 +181,9 @@ final class SettingsPage
     /** @param array $input */
     public function sanitize(array $input): array
     {
-        $roles = array_keys(wp_roles()->get_names());
+        // Only roles that are safe to auto-provision are accepted; anything else
+        // (including a hand-posted "administrator") falls back to Subscriber.
+        $assignable = array_keys(Helpers::assignable_roles());
         $role = isset($input['oauth_default_role']) ? sanitize_key($input['oauth_default_role']) : 'subscriber';
 
         return [
@@ -178,7 +196,7 @@ final class SettingsPage
             'oauth_client_id' => isset($input['oauth_client_id']) ? sanitize_text_field($input['oauth_client_id']) : '',
             'oauth_client_secret' => isset($input['oauth_client_secret']) ? sanitize_text_field($input['oauth_client_secret']) : '',
             'oauth_auto_create_users' => !empty($input['oauth_auto_create_users']),
-            'oauth_default_role' => in_array($role, $roles, true) ? $role : 'subscriber',
+            'oauth_default_role' => in_array($role, $assignable, true) ? $role : 'subscriber',
         ];
     }
 

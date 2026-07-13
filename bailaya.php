@@ -3,7 +3,7 @@
  * Plugin Name:       BailaYa
  * Plugin URI:        https://www.bailaya.com/
  * Description:       Embed your BailaYa class schedules, events, instructors, packages and locations in WordPress with shortcodes and blocks.
- * Version:           1.8.3
+ * Version:           1.8.4
  * Requires at least: 6.0
  * Requires PHP:      8.1
  * Author:            Infinity Curve LLC
@@ -29,7 +29,7 @@
 if (!defined('ABSPATH')) exit;
 
 // Keep in step with the "Version" header above and readme.txt's "Stable tag".
-define('BAILAYA_WP_VER', '1.8.3');
+define('BAILAYA_WP_VER', '1.8.4');
 define('BAILAYA_WP_PATH', plugin_dir_path(__FILE__));
 define('BAILAYA_WP_URL', plugin_dir_url(__FILE__));
 

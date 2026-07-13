@@ -716,3 +716,11 @@ msgstr ""
 #: templates/studio-profile-card.php:28
 msgid "Business Hours"
 msgstr ""
+
+#: includes/Admin/SettingsPage.php:174
+msgid "Administrator and other privileged roles are not offered: these accounts are created automatically for anyone who signs in with BailaYa."
+msgstr ""
+
+#: includes/Auth/SignInWithBailaya.php:290
+msgid "Your BailaYa email address is not verified."
+msgstr ""
