@@ -1,9 +1,6 @@
 name: Build & Release Plugin
 
 on:
-  push:
-    tags:
-      - 'v*'          # e.g. v0.1.0, v1.2.3
   workflow_dispatch:   # allow manual runs too
 
 jobs:
