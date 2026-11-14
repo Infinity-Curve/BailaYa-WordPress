@@ -1,3 +1,5 @@
+> **Archived:** this repository has moved to GitLab: https://gitlab.com/infinitycurve/BailaYa-WordPress
+
 === BailaYa ===
 Contributors: infinitycurve
 Tags: dance, schedule, classes, booking, studio
